@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="sql" />
+    <None Remove="Views\Note\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -35,5 +36,8 @@
     <ProjectReference Include="..\ElevenNote.Services\ElevenNote.Services.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Note\" />
   </ItemGroup>
 </Project>
