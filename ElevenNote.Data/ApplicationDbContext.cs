@@ -9,5 +9,7 @@ public class ApplicationDbContext : IdentityDbContext
         : base(options)
     {
     }
-}
 
+    public DbSet<Note> Notes { get; set; }
+
+}
