@@ -61,6 +61,16 @@ namespace ElevenNote.WebMVC.Controllers
             return View(model);
         }
 
+        // Get
+        public ActionResult Details(int id)
+        {
+            var svc = CreateNoteService();
+
+            var model = svc.GetNoteById(id);
+
+            return View(model);
+        }
+
         private NoteService CreateNoteService()
         {
             ClaimsPrincipal currentUser = this.User;
