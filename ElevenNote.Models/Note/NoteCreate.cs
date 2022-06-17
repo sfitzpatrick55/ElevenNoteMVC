@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ElevenNote.Models
+namespace ElevenNote.Models.Note
 {
 	public class NoteCreate
 	{

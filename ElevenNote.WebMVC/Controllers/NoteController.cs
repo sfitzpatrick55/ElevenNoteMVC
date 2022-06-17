@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
-using ElevenNote.Models;
+using ElevenNote.Data;
+using ElevenNote.Models.Note;
+using ElevenNote.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -15,29 +19,62 @@ namespace ElevenNote.WebMVC.Controllers
 
     public class NoteController : Controller
     {
-        // GET: /<controller>/
-        public IActionResult Index()
+        private readonly ApplicationDbContext _ctx;
+
+        public NoteController(ApplicationDbContext ctx)
         {
-            var model = new NoteListItem[0];
+            _ctx = ctx;
+        }
+
+        // GET: /<controller>/
+        public ActionResult Index()
+        {
+            var service = CreateNoteService();
+
+            var model = service.GetNotes();
+
             return View(model);
         }
 
+        public NoteService CreateNoteService()
+        {
+            ClaimsPrincipal currentUser = this.User;
+            var currentUserID = Guid.Parse(currentUser.FindFirst(ClaimTypes.NameIdentifier).Value);
+            //var userId = Guid.Parse(User.Identity.GetUserId());
+            //var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
+            var service = new NoteService(currentUserID, _ctx);
+            return service;
+        }
+
         // GET
-        public IActionResult Create()
+        public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(NoteCreate model)
+        public ActionResult Create(NoteCreate model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-
+                return View(model);
             }
-            return View(model);
+
+            var service = CreateNoteService();
+
+            service.CreateNote(model);
+
+            return RedirectToAction("Index");
         }
+
+        //private NoteService CreateNoteService()
+        //{
+        //    ClaimsPrincipal currentUser = this.User;
+        //    var currentUserId = Guid.Parse(currentUser.FindFirst(ClaimTypes.NameIdentifier).Value);
+        //    //var userId = Guid.Parse(User.Identity.GetUserId());
+        //    var service = new NoteService(currentUserId, _ctx);
+        //    return service;
+        //}
     }
 }
-

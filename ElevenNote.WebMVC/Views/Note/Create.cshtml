@@ -1,4 +1,4 @@
-﻿@model ElevenNote.Models.NoteCreate
+﻿@model ElevenNote.Models.Note.NoteCreate
 
 @{
     ViewData["Title"] = "Create";
@@ -6,7 +6,7 @@
 
 <h1>Create</h1>
 
-<h4>Note</h4>
+<h4>NoteCreate</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -36,4 +36,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-

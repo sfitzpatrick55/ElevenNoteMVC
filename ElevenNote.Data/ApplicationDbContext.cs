@@ -10,6 +10,11 @@ public class ApplicationDbContext : IdentityDbContext
     {
     }
 
+    //public static ApplicationDbContext Create()
+    //{
+    //    return new ApplicationDbContext();
+    //}
+
     public DbSet<Note> Notes { get; set; }
 
 }
