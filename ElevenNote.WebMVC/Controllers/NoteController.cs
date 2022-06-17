@@ -36,16 +36,6 @@ namespace ElevenNote.WebMVC.Controllers
             return View(model);
         }
 
-        public NoteService CreateNoteService()
-        {
-            ClaimsPrincipal currentUser = this.User;
-            var currentUserID = Guid.Parse(currentUser.FindFirst(ClaimTypes.NameIdentifier).Value);
-            //var userId = Guid.Parse(User.Identity.GetUserId());
-            //var userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
-            var service = new NoteService(currentUserID, _ctx);
-            return service;
-        }
-
         // GET
         public ActionResult Create()
         {
@@ -56,25 +46,25 @@ namespace ElevenNote.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(NoteCreate model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
+            if (!ModelState.IsValid) return View(model);
+           
             var service = CreateNoteService();
 
-            service.CreateNote(model);
+            if (service.CreateNote(model))
+            {
+                return RedirectToAction("Index");
+            };
 
-            return RedirectToAction("Index");
+            return View(model);
         }
 
-        //private NoteService CreateNoteService()
-        //{
-        //    ClaimsPrincipal currentUser = this.User;
-        //    var currentUserId = Guid.Parse(currentUser.FindFirst(ClaimTypes.NameIdentifier).Value);
-        //    //var userId = Guid.Parse(User.Identity.GetUserId());
-        //    var service = new NoteService(currentUserId, _ctx);
-        //    return service;
-        //}
+        private NoteService CreateNoteService()
+        {
+            ClaimsPrincipal currentUser = this.User;
+            var currentUserId = Guid.Parse(currentUser.FindFirst(ClaimTypes.NameIdentifier).Value);
+            //var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new NoteService(currentUserId, _ctx);
+            return service;
+        }
     }
 }
