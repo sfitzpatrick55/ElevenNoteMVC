@@ -52,7 +52,7 @@ namespace ElevenNote.WebMVC.Controllers
 
             if (service.CreateNote(model))
             {
-                ViewBag.SaveResult = "Your note was successfully created!";
+                TempData["SaveResult"] = "Your note was successfully created!";
                 return RedirectToAction("Index");
             };
 
