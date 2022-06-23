@@ -15,6 +15,7 @@
     <None Remove="Swashbuckle.AspNetCore" />
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
     <None Remove="Views\Shared\DisplayTemplates\" />
+    <None Remove="Microsoft.AspNet.WebApi" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -33,6 +34,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.6" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
+    <PackageReference Include="Microsoft.AspNet.WebApi" Version="5.2.9" />
   </ItemGroup>
 
   <ItemGroup>

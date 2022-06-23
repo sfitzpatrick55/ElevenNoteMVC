@@ -9,9 +9,11 @@
   <ItemGroup>
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore, Version=6.0.5.0, Culture=neutral, PublicKeyToken=adb9793829ddae60" />
+    <None Remove="Microsoft.AspNet.WebApi" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
+    <PackageReference Include="Microsoft.AspNet.WebApi" Version="5.2.9" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ElevenNote.Data\ElevenNote.Data.csproj" />
