@@ -16,6 +16,7 @@
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
     <None Remove="Views\Shared\DisplayTemplates\" />
     <None Remove="Microsoft.AspNet.WebApi" />
+    <None Remove="Controllers\WebAPI\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -51,5 +52,6 @@
   <ItemGroup>
     <Folder Include="Views\Note\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />
+    <Folder Include="Controllers\WebAPI\" />
   </ItemGroup>
 </Project>
